@@ -1,11 +1,14 @@
 import { connect } from 'react-redux'
-import Navigation from '../components/Navigation'
+import Login from '../components/login'
 import {loginUser} from '../redux/actions'
 
 const mapStateToProps = (state) => {
-    return {
-      user: state.user
-    }
+  return {
+    user: state.user,
+    business: state.business,
+    login: state.login
+
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -14,4 +17,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

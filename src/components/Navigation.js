@@ -4,8 +4,16 @@ import { AppBar, Toolbar, IconButton,
 import MenuIcon from '@material-ui/icons/Menu'
 import { Link } from 'react-router-dom'
 
-
 const Navigation = (props) => {
+    const switchClick = () => {
+        if (props.user.username) {
+            // log the user out
+            props.loginUser(null)
+        } else {
+            // do nothing right now
+            console.log(props.user.username)
+        }
+    }
     return (
         <AppBar position="relative">
             <Toolbar>
@@ -17,8 +25,14 @@ const Navigation = (props) => {
                         <Link to="/">Listing</Link>
                     </li>
                     <li className="nav-list-item">
-                        <Link to="/about">Login</Link>
+                        {props.user.username ? <Link onClick={switchClick}>Logout</Link> :
+                        <Link onClick={switchClick} to="/login">Login</Link>}
                     </li>
+                    <li className="nav-list-item">
+                        {props.user.username ? <Link onClick={switchClick}>Logout</Link> :
+                        <Link onClick={switchClick} to="/add">Add</Link>}
+                    </li>
+                    
                 </ul>
             </Toolbar>
         </AppBar>
