@@ -3,7 +3,7 @@ export default {
     username: false
 },
 
-  business: [
+  shop: [
     {
       'Name': 'Sonic',
       'id': 0,

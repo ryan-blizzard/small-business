@@ -11,3 +11,10 @@ export const userLogin = (username) => {
     value: username
   }
 }
+
+export const deleteShop = (index) => {
+  return {
+    type: 'DELETE',
+    value: index
+  }
+}

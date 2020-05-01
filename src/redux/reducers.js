@@ -21,4 +21,17 @@ const login = (state = null, action) => {
   }
 }
 
-export default combineReducers({user, business, login})
+const shop = (state = [], action) => {
+  switch(action.type) {
+      case 'ADD_SHOP':
+          return [ ...state, action.value ]
+      case 'REMOVE_SHOP':
+          const shop = [ ...state ]
+          shop.splice(action.value, 1)
+          return shop
+      default:
+          return state
+  }
+}
+
+export default combineReducers({user, business, login, shop})

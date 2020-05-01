@@ -4,8 +4,9 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import { Link } from 'react-router-dom'
 
 
-const listing = (props) => {
-  console.log (props)
+const user = (props) => {
+  console.log (props.shop)
+  
   return (
     <Table>
     <TableHead>
@@ -14,10 +15,11 @@ const listing = (props) => {
             <TableCell>Description</TableCell>
             <TableCell>Address</TableCell>
             <TableCell>Hours</TableCell>
+            <TableCell>Delete</TableCell>
         </TableRow>
     </TableHead>
     <TableBody>
-    {props.business.map((shop, idx) => (
+    {props.shop.map((shop, idx) => (
         <TableRow key={shop.id}>
             <TableCell>
                 <Link to = {"/details/" + shop.id}> 
@@ -29,7 +31,7 @@ const listing = (props) => {
             <TableCell>{shop["hours"]}</TableCell>
             <TableCell>
                 <DeleteIcon
-                    onClick={() => props.business(idx)}
+                    onClick={() => props.deleteShop(idx)}
                     className="icon text-red" />
             </TableCell>
         </TableRow>
@@ -39,4 +41,4 @@ const listing = (props) => {
   )
 }
 
-export default listing
+export default user
