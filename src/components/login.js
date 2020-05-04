@@ -1,6 +1,6 @@
-import React, {  useState } from 'react'
+import React, { Component } from 'react'
 // import { Redirect } from 'react-router'
-import { useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {
   TextField,
   Button,
@@ -8,40 +8,45 @@ import {
 } from '@material-ui/core'
 
 
+class App extends Component {
+  state = {
+    username: '',
+    password: ''
+  }
 
-const Login = (props) => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const history = useHistory()
+  handleTextChange = (e) => {
+    const state = { ...this.state }
+    state[e.target.name] = e.target.value
+    this.setState(state)
+  }
 
-  const login = (e) => {
+  login = (e) => {
     e.preventDefault()
+    const { history } = this.props;
     document.cookie=
     'loggedIn=true;max-age = 60*1000'
     // set cookie here
     // set loggedIn = true and max-age = 60*1000 (one minute)
-    props.loginUser(username)
-    history.push("/user")
-  }
+    this.props.loginUser('test')
+    history.push("/list")
+}
 
-  console.log(props.user.username)
-
-
+    render() {
     return (
     <div className="App">
         <Container maxWidth="sm">
-        <form className="login-form" onSubmit={login}>
+        <form className="login-form" onSubmit={this.login}>
             <TextField
             
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
+                onChange={this.handleTextChange}
+                value={this.state.username}
                 name="username"
                 label="Username"
                 // required
                 type="text" />
             <TextField
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
+                onChange={this.handleTextChange}
+                value={this.state.password}
                 name="password"
                 label="Password"
                 type="password"
@@ -56,7 +61,7 @@ const Login = (props) => {
         </Container>
       </div>
     );
+  }
 }
 
-export default Login;
-
+export default withRouter(App);

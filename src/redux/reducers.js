@@ -1,37 +1,28 @@
 import { combineReducers } from 'redux'
 
-const user = (state = null) => state
+const user = (state = null, action) => {
+    switch (action.type) {
+        case 'LOGIN':
+            return {
+                username: action.value
+            }
+        default:
+            return state
+    }
+}
 
 const business = (state = [], action) => {
-  switch(action.type){
-    default:
-      return state
-  }
-
+    switch(action.type) {
+        case 'ADD_BUSINESS':
+            return [ ...state, action.value ]
+        case 'REMOVE_BUSINESS':
+            const business = [ ...state ]
+            business.splice(action.value, 1)
+            return business
+        default:
+            return state
+    }
 }
 
-const login = (state = null, action) => {
-  console.log (action, "loginReducer")
-  switch(action.type){
-    case 'LOGIN':
-      return {username: action.value}
-    default:
-      return state
-      
-  }
-}
 
-const shop = (state = [], action) => {
-  switch(action.type) {
-      case 'ADD_SHOP':
-          return [ ...state, action.value ]
-      case 'REMOVE_SHOP':
-          const shop = [ ...state ]
-          shop.splice(action.value, 1)
-          return shop
-      default:
-          return state
-  }
-}
-
-export default combineReducers({user, business, login, shop})
+export default combineReducers({ business, user })

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import user from '../components/user'
+import user from '../components/List'
 import state from '../redux/state'
 import {deleteShop} from '../redux/actions'
 
