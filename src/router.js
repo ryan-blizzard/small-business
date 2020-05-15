@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router'
 import cookie from 'cookie'
 import List from './containers/List'
 import Login from './containers/Login'
-import Business from './containers/Business';
+import Business from './containers/AddBusiness';
 import About from './containers/About'
 
 const checkAuth = () => {
